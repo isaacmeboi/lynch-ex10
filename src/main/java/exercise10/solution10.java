@@ -1,55 +1,74 @@
 package exercise10;
 
+
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class solution10 {
+
+
+class Taxes {
 
     private static DecimalFormat df = new DecimalFormat("0.00");
 
-    public static void main(String[] args) {
+    double cost1;
+    double cost2;
+    double cost3;
+    double quantity1;
+    double quantity2;
+    double quantity3;
+
+    public void scn() {
         Scanner sc = new Scanner(System.in);
 
-
-
         System.out.print("Enter the cost of item 1: ");
-        double cost1 = sc.nextDouble();
-
+        this.cost1 = sc.nextDouble();
         System.out.print("Enter the amount of item 1: ");
-        int quantity1 = sc.nextInt();
+        this.quantity1 = sc.nextDouble();
 
         System.out.print("Enter the cost of item 2: ");
-        double price2 = sc.nextDouble();
-
+        this.cost2 = sc.nextDouble();
         System.out.print("Enter the amount of item 2: ");
-        int cost2 = sc.nextInt();
+        this.quantity2 = sc.nextDouble();
 
         System.out.print("Enter the cost of item 3: ");
-        double cost3 = sc.nextDouble();
-
+        this.cost3 = sc.nextDouble();
         System.out.print("Enter the amount of item 3: ");
-        int quantity3 = sc.nextInt();
+        this.quantity3 = sc.nextDouble();
+    }
 
-        double subTotal = (cost1*quantity1)+(price2*cost2)+(cost3*quantity3);
+    public void prt() {
 
-        double tax = (subTotal*5.5)/100;
+        double subTotal = (cost1 * quantity1) + (quantity2 * cost2) + (cost3 * quantity3);
+        double tax = (subTotal * 5.5) / 100;
+        double finalTotal = subTotal + tax;
 
-        double finalTotal = subTotal+tax;
+        System.out.println("Subtotal: $" + df.format(subTotal));
+        System.out.println("Tax: $" + df.format(tax));
+        System.out.println("Total: $" + df.format(finalTotal));
+    }
 
-        System.out.println("Subtotal: $"+ df.format(subTotal));
-        System.out.println("Tax: $"+ df.format(tax));
-        System.out.println("Total: $"+ df.format(finalTotal));
+
+}
+public class solution10 {
+
+
+    public static void main(String[] args) {
+        Taxes ca = new Taxes();
+        ca.scn();
+        ca.prt();
     }
 }
-/* psuedocode: first we import the scanner function and then create an instance of it. the
-same thing is done with the decimal format function so that the final answers can be rounded
-to the nearest cent. after that there are a series of scan functions used to read in the
-quantity of items and their respective costs. the quantity is stored in an int because all
-the numbers are whole numbers, and the prices are held in double floats to help in the end
-to find the final total down to the cents. next, the subtotal is calculated by multiplying
-the cost of the items by the quantity and then adding them all together. then, the tax is found
-by multiplying the subtotal by 5.5 and then dividing by 100. finally, the final total is
-calculated by adding the subtotal and the tax. the code prints out the subtotal, the tax,
-and the final total separately. all of these are formatted to the nearest cent using the
-decimal format function.
+
+/* real tears came out of my eyes having to redo all of these, but i must admit,
+ they look a lot nice to read. the first thing this code does import both the
+ scanner function and the decimal format function to round the dollar to the
+ nearest cent. after that, a class named class is created and then the first
+ instance of the decimal format function is made. then the quantity and cost of
+ the items are declared as doubles.two public void are then made, "scn" which
+ reads in the values from the user, and "prt" which does the actual math and
+ prints out the final solutions. the math for the subtotal is calculated by
+ adding together the price of the items multiplied by the amount of items. all
+ of the answers for the subtotal, base total, and final total are all formatted
+ using the decimal format function to ensure they are all rounded to the closest
+ cent. finally, the main function calls these two voids to run the program.
  */
